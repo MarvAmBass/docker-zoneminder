@@ -9,7 +9,7 @@ This Dockerfile (available as ___marvambass/zoneminder___) gives you a ready to 
 Note: This container only supports `mysql` / `mariadb` database servers.
 There is no internal mysql-server available - so you need to setup a seconds container for that (take a look at `docker-compose.yml`)
 
-View in Docker Registry [marvambass/zoneminder](https://registry.hub.docker.com/u/marvambass/zoneminder/)
+View in Docker Registry [marvambass/zoneminder](https://hub.docker.com/r/marvambass/zoneminder)
 
 View in GitHub [MarvAmBass/docker-zoneminder](https://github.com/MarvAmBass/docker-zoneminder)
 
