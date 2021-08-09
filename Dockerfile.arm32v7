@@ -1,0 +1,31 @@
+FROM alpine AS builder
+
+# Download QEMU, see https://github.com/docker/hub-feedback/issues/1261
+ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-arm.tar.gz
+RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
+
+FROM marvambass/apache2-ssl-secure:latest-arm32v7
+
+COPY --from=builder qemu-arm-static /usr/bin
+
+RUN apt-get -q -y update && \
+    apt-get -q -y install apt-transport-https gnupg wget \
+                          runit && \
+    \
+    echo 'deb https://zmrepo.zoneminder.com/debian/release-1.34 buster/' >> /etc/apt/sources.list && \
+    wget -O - https://zmrepo.zoneminder.com/debian/archive-keyring.gpg | apt-key add - && \
+    \
+    apt-get -q -y update && \
+    apt-get -q -y install zoneminder && \
+    apt-get -q -y clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    \
+    a2enconf zoneminder && \
+    a2enmod rewrite && \
+    \
+    sed -i 's/ZM_DB_HOST=.*/ZM_DB_HOST=db/g' /etc/zm/zm.conf
+
+COPY scripts/healthchecks.d/* /container/scripts/healthchecks.d/
+
+COPY config/www/index.php /var/www/html/index.php
+COPY config/runit/zoneminder /container/config/runit/zoneminder
