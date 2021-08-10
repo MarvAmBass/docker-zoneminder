@@ -1,8 +1,7 @@
-FROM marvambass/apache2-ssl-secure
+FROM marvambass/apache2-ssl-secure:latest
 
 RUN apt-get -q -y update && \
-    apt-get -q -y install apt-transport-https gnupg wget \
-                          runit && \
+    apt-get -q -y install apt-transport-https gnupg wget && \
     \
     echo 'deb https://zmrepo.zoneminder.com/debian/release-1.34 buster/' >> /etc/apt/sources.list && \
     wget -O - https://zmrepo.zoneminder.com/debian/archive-keyring.gpg | apt-key add - && \
