@@ -4,7 +4,7 @@ _maintained by MarvAmBass_
 
 ## What is it
 
-This Dockerfile (available as ___marvambass/zoneminder___) gives you a ready to use zonminder installation with optional tls.
+This Dockerfile (available as ___marvambass/zoneminder___) gives you a ready to use zoneminder installation with optional tls.
 
 Note: This container only supports `mysql` / `mariadb` database servers.
 There is no internal mysql-server available - so you need to setup a seconds container for that (take a look at `docker-compose.yml`)
@@ -17,6 +17,9 @@ This Dockerfile is based on the [marvambass/apache2-ssl-secure](https://registry
 
 ## Changelogs
 
+* 2021-08-27
+    * small fixes
+    * added this repo to container
 * 2021-08-09
     * initial commit
     * healthchecks
