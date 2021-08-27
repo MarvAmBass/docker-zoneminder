@@ -21,4 +21,4 @@ COPY scripts/healthchecks.d/* /container/scripts/healthchecks.d/
 COPY config/www/index.php /var/www/html/index.php
 COPY config/runit/zoneminder /container/config/runit/zoneminder
 
-COPY . /container
+COPY . /container-2
