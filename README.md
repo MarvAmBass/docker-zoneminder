@@ -17,6 +17,8 @@ This Dockerfile is based on the [marvambass/apache2-ssl-secure](https://registry
 
 ## Changelogs
 
+* 2021-09-06
+    * increased `shm_size` for more cameras
 * 2021-08-27
     * small fixes
     * added this repo to container

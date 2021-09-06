@@ -44,7 +44,8 @@ services:
       - ZM_DB_HOST=db
       - ZM_DB_NAME=zm
       - ZM_DB_USER=zmuser
-      - ZM_DB_PASS=zmpass      
+      - ZM_DB_PASS=zmpass
+    shm_size: "2g"
     ports: 
       - 8080:80
     links:
